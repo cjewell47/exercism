@@ -6,14 +6,18 @@ var PhoneNumber = function(input) {
 };
 
 function number() {
-  var stripped = this.input.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').replace(/\s/g,'');
-  if(stripped.length === 10) {
-    return stripped;
-  } else if (stripped.length === 11 && stripped[0] === '1') {
-    return stripped.slice(1);
+  var strippedNumber = removeCharacters(this.input);
+  if(strippedNumber.length === 10) {
+    return strippedNumber;
+  } else if (strippedNumber.length === 11 && strippedNumber[0] === '1') {
+    return strippedNumber.slice(1);
   } else {
     return '0000000000';
   }
+}
+
+function removeCharacters(num) {
+  return num.replace(/[\s.)(-]/g,'');
 }
 
 function areaCode() {

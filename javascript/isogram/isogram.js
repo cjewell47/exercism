@@ -4,7 +4,7 @@ var Isogram = function(input) {
 };
 
 function isIsogram() {
-  var stripped = this.input.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,'').replace(/\s/g,'');
+  var stripped = this.input.replace(/[\s.,\/#!$%\^&\*;:{}=\-_`~()]/g,'');
   var letters = {};
   for(let i = 0; i < stripped.length; i++) {
     var letter = stripped[i];
