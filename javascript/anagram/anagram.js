@@ -6,16 +6,26 @@ var Anagram = function(word) {
 function matches(args) {
   var argumentArray = typeof args === 'string' ? [].slice.apply(arguments) : args;
   var anagrams = [];
-  var ordered  = this.word.split('').sort().join('');
+  var subjectWord = this.word;
+  var ordered  = orderWord(subjectWord);
   argumentArray.forEach(item => {
-    if(isMatch(item) && item.toLowerCase() !== this.word) {
+    if(isMatch(item) && differentWord(item)) {
       anagrams.push(item);
     }
   });
 
-  function isMatch(input) {
-    return ordered === input.toLowerCase().split('').sort().join('');
+  function orderWord(input) {
+    return input.split('').sort().join('');
   }
+
+  function isMatch(input) {
+    return ordered === orderWord(input.toLowerCase());
+  }
+
+  function differentWord(input) {
+    return subjectWord !== input.toLowerCase();
+  }
+
   return anagrams;
 }
 
