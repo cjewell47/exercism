@@ -27,7 +27,7 @@ function areaCode() {
 
 function toString() {
   var num = this.number();
-  return '(' + num.slice(0, 3) + ') ' + num.slice(3, 6) + '-' + num.slice(6, 10);
+  return '(' + this.areaCode(num) + ') ' + num.slice(3, 6) + '-' + num.slice(6, 10);
 }
 
 module.exports = PhoneNumber;
