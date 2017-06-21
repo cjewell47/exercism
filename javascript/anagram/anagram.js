@@ -5,8 +5,8 @@ var Anagram = function(word) {
 
 function matches(args) {
   var argumentArray = typeof args === 'string' ? [].slice.apply(arguments) : args;
-  var anagrams = [];
   var subjectWord = this.word;
+  var anagrams = [];
   var ordered  = orderWord(subjectWord);
   argumentArray.forEach(item => {
     if(isMatch(item) && differentWord(item)) {
