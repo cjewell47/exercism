@@ -8,8 +8,8 @@ class PigLatin
 
   def self.pigify word
     letters = word.chars
-    letters.rotate! until is_first_letter_vowel?(letters) || is_exception?(letters)
-    letters.rotate! if is_first_letter_u?(letters) && is_last_letter_q?(letters)
+    letters.rotate! until is_first_letter_vowel?(letters) unless is_y_or_x_as_vowel?(letters)
+    letters.rotate! if is_a_qu_word?(letters)
     letters.join << "ay"
   end
 
@@ -21,17 +21,12 @@ class PigLatin
     VOWELS.include? letters.first
   end
 
-  def self.is_first_letter_u? letters
-    letters.first == "u"
+  def self.is_a_qu_word? letters
+    letters.first == "u" && letters.last == "q"
   end
 
-  def self.is_last_letter_q? letters
-    letters.last == "q"
-  end
-
-  def self.is_exception? letters
-    letters.first == "x" && letters[1] == "r" ||
-    letters.first == "y" && letters[1] == "t"
+  def self.is_y_or_x_as_vowel? letters
+    letters.first == "x" && !VOWELS.include?(letters[1]) || letters.first == "y" && !VOWELS.include?(letters[1])
   end
 end
 
