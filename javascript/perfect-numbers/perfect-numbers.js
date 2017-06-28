@@ -11,8 +11,6 @@ function classify(n) {
   }
   if(n <= 0) {
     return 'Classification is only possible for natural numbers.';
-  } else if(divisors.length === 0) {
-    return 'deficient';
   } else {
     var sum = 0;
     for(let i in divisors) {
