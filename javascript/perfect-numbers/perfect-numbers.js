@@ -18,13 +18,7 @@ function classify(n) {
     for(let i in divisors) {
       sum += divisors[i];
     }
-    if(sum === n) {
-      return 'perfect';
-    } else if (sum > n) {
-      return 'abundant';
-    } else if (sum < n) {
-      return 'deficient';
-    }
+    return sum === n ? 'perfect' : sum > n ? 'abundant' : 'deficient';
   }
 }
 
