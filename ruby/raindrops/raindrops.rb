@@ -7,8 +7,8 @@ class Raindrops
 
   def self.convert n
     output = ''
-    SOUNDS.map { |num, word| n % num == 0 ? output << word : ''}
-    output.length == 0 ? output << String(n) : output
+    SOUNDS.map { |num, word| n % num == 0 ? output << word : '' }
+    output.empty? ? output << String(n) : output
   end
 end
 
