@@ -6,6 +6,18 @@ var Clock = function(hour, min) {
   }
   this.min = min;
   this.hour %= 24;
+  if(this.min < 0) {
+    this.min *= -1;
+    this.hour -= Math.ceil(this.min / 60);
+    this.hour %= 24;
+    this.min %= 60;
+    this.min = 60 - this.min;
+  }
+  if(this.hour < 0) {
+    this.hour *= -1;
+    this.hour %= 24;
+    this.hour = 24 - this.hour;
+  }
   if(this.min >= 60) {
     this.hour += Math.floor(this.min / 60);
     this.hour %= 24;
@@ -35,14 +47,18 @@ function plus(min) {
 
 function minus(min) {
   var hour = Math.floor(min / 60);
-  min = min % 60;
-  if (this.min < min) {
-    this.min = this.min + 60 - min;
-    this.hour = (this.hour + 24 - 1 - hour) % 24;
+  min %= 60;
+  if(this.min < min) {
+    this.min += 60 - min;
+    this.hour -= hour + 1;
   } else {
     this.min  -= min;
     this.hour -= hour;
   }
+  while(this.hour < 0) {
+    this.hour += 24;
+  }
+  this.hour %= 24;
   return this;
 }
 
