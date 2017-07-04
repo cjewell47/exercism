@@ -11,9 +11,9 @@ function count(sentence) {
   var output = {};
   for (var i = 0; i < splitWords.length; i++){
     var value = splitWords[i];
-    if(value in output) {
+    if(value.length !== 0 && value in output) {
       output[value] += 1;
-    } else {
+    } else if (value.length !== 0 && !(value in output)) {
       output[value] = 1;
     }
   }
