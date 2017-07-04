@@ -8,10 +8,10 @@ function count(sentence) {
   var splitWords = stripped.split(/[ ,]+/);
   splitWords = splitWords.map(x =>
   removeQuotes(x).toLowerCase());
-  var output = {};
+  var output = Object.create(null);
   for (var i = 0; i < splitWords.length; i++){
     var value = splitWords[i];
-    if(value.length !== 0 && output.hasOwnProperty(value)) {
+    if(value.length !== 0 && value in output) {
       output[value] += 1;
     } else if (value.length !== 0 && !(value in output)) {
       output[value] = 1;
