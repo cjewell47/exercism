@@ -3,11 +3,11 @@ var Words = function() {
 };
 
 function count(sentence) {
-  var stripped = sentence.replace(/[~`!¡@#$%^&*(){}\[\];:"<.>?¿\/\\|_+=-]/g,'');
-  stripped = stripped.replace(/[\t\n]/g,' ');
+  var stripped = strip(sentence);
+  stripped = removeTabAndLine(stripped);
   var splitWords = stripped.split(/[ ,]+/);
   splitWords = splitWords.map(x =>
-  x.toLowerCase().replace(/^'(.+(?='$))'$/, '$1'));
+  removeQuotes(x).toLowerCase());
   var output = {};
   for (var i = 0; i < splitWords.length; i++){
     var value = splitWords[i];
@@ -18,6 +18,18 @@ function count(sentence) {
     }
   }
   return output;
+}
+
+function strip(x) {
+  return x.replace(/[~`!¡@#$%^&*(){}\[\];:"<.>?¿\/\\|_+=-]/g,'');
+}
+
+function removeTabAndLine(x) {
+  return x.replace(/[\t\n]/g,' ');
+}
+
+function removeQuotes(x) {
+  return x.replace(/^'(.+(?='$))'$/, '$1');
 }
 
 module.exports = Words;
