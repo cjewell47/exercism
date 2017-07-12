@@ -4,8 +4,8 @@ var ETL = function() {
 
 function transform(input) {
   var output = {};
-  Object.keys(input).map(key =>
-    input[key].map(value =>
+  Object.keys(input).forEach(key =>
+    input[key].forEach(value =>
       output[value.toLowerCase()] = parseInt(key)));
   return output;
 }
