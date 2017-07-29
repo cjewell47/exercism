@@ -10,11 +10,7 @@ function square(x) {
 }
 
 function total() {
-  var sum = BigInt(0);
-  for(var i = 0; i < 64; i++) {
-    sum = sum.add(BigInt(2).pow(i));
-  }
-  return sum.toString();
+  return BigInt(2).pow(64).subtract(1).toString();
 }
 
 module.exports = Grains;
